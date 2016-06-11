@@ -2,7 +2,25 @@ var webpack = require('webpack');
 
 module.exports = function (config) {
   config.set({
-    browsers: [ 'Chrome' ], //run in Chrome
+    browsers: [ 'Chrome', "Firefox", "IE" ], //run in Chrome
+    customLaunchers: {
+         IE10: {
+            base: 'IE',
+            'x-ua-compatible': 'IE=EmulateIE11'
+        },
+        IE11: {
+            base: 'IE',
+            'x-ua-compatible': 'IE=EmulateIE10'
+        },       
+        IE9: {
+            base: 'IE',
+            'x-ua-compatible': 'IE=EmulateIE9'
+        },
+        IE8: {
+            base: 'IE',
+            'x-ua-compatible': 'IE=EmulateIE8'
+        }
+    },
     singleRun: true, //just run once by default
     frameworks: [ 'mocha' ], //use the mocha test framework
     files: [
