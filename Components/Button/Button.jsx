@@ -2,12 +2,7 @@ import React from "react";
 
 export default React.createClass({
     getInitialState() {
-        var disabled = false;
-        if (!(this.props.disabled === undefined)) {
-            disabled = this.props.disabled;
-        }
-
-        return { disabled: disabled };
+        return { disabled: this.props.disabled !== undefined ? this.props.disabled : false };
     },
 
     componentWillReceiveProps(next) {
