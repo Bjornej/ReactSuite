@@ -21,9 +21,9 @@ export default React.createClass({
             return;
         }
 
-        if (res.always) {
+        if (res.then) {
             this.setState({ disabled: true });
-            res.always(x => this.setState({ disabled: false }));
+            res.then(x => this.setState({ disabled: false }));
         }
     },
 
@@ -32,9 +32,9 @@ export default React.createClass({
             <button
                 type="button"
                 {...this.props}
-                className={this.props.className}
                 disabled={this.state.disabled}
-                onClick={this.onClick}>
+                onClick={this.onClick}            
+            >
                 {this.props.children}
             </button>);
     }
