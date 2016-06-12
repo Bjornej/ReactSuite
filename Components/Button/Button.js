@@ -21,9 +21,13 @@ export default React.createClass({
             return;
         }
 
-        if (res.then) {
+        if (res.always || res.then) {
             this.setState({ disabled: true });
-            res.then(x => this.setState({ disabled: false }));
+            if(res.always){
+                res.always(x => this.setState({ disabled: false }));
+            }else{
+                res.then(x => this.setState({ disabled: false }));
+            }
         }
     },
 
