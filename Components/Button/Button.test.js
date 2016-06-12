@@ -1,17 +1,21 @@
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils');
-var expect = require('expect');
+var should = require('should');
 import Button from "./Button";
 
-describe('Button', function () {
-  it('renders without problems', function () {
+describe('Button',  () => {
+  it('renders without problems', () => {
     var root = TestUtils.renderIntoDocument(<Button />);
-    expect(root).toExist();
+    root.should.be.ok;
   });
 
+  it('renders childrens when passed', () => {
+    var root = TestUtils.renderIntoDocument(<Button><i>prova</i></Button>);
+    TestUtils.findRenderedDOMComponentWithTag(root,"i").textContent.should.eql("prova");
+  });
 
-  it('uses disabled props if passed', function () {
+  it('uses disabled props if passed', () => {
     var root = TestUtils.renderIntoDocument(<Button disabled/>);
-    expect(TestUtils.findRenderedDOMComponentWithTag(root,"button").disabled).toBe(true);
+    TestUtils.findRenderedDOMComponentWithTag(root,"button").disabled.should.eql(true);
   });
 });
